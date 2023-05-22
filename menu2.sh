@@ -22,10 +22,10 @@ IWhite='\033[0;97m'       # White
 NC='\e[0m'
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 
-export sem=$( curl -s https://raw.githubusercontent.com/andre-sakti/test/main/versions)
+export sem=$( curl -s https://raw.githubusercontent.com/andresakti7/test/main/versions)
 export pak=$( cat /home/.ver)
 IPVPS=$(curl -s ipinfo.io/ip )
-export Server_URL="raw.githubusercontent.com/andre-sakti/test/main"
+export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
 License_Key=$(cat /etc/${Auther}/license.key)
 export Nama_Issued_License=$( curl -s https://${Server_URL}/validated-registered-license-key.txt | grep -w $License_Key | cut -d ' ' -f 7-100 | tr -d '\r' | tr -d '\r\n')
 clear
