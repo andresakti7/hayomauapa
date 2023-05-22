@@ -49,8 +49,8 @@ export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
 # // Exporting URL Host
-export Server_URL="raw.githubusercontent.com/andre-sakti/test/main"
-export Server1_URL="raw.githubusercontent.com/andre-sakti/limit/main"
+export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
+export Server1_URL="raw.githubusercontent.com/andresakti7/limit/main"
 export Server_Port="443"
 export Server_IP="underfined"
 export Script_Mode="Stable"
@@ -212,10 +212,10 @@ echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu
 }
-export sem=$( curl -s https://raw.githubusercontent.com/andre-sakti/test/main/versions)
+export sem=$( curl -s https://raw.githubusercontent.com/andresakti7/test/main/versions)
 export pak=$( cat /home/.ver)
 IPVPS=$(curl -s ipinfo.io/ip )
-export Server_URL="raw.githubusercontent.com/andre-sakti/test/main"
+export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
 License_Key=$(cat /etc/${Auther}/license.key)
 export Nama_Issued_License=$( curl -s https://${Server_URL}/validated-registered-license-key.txt | grep -w $License_Key | cut -d ' ' -f 7-100 | tr -d '\r' | tr -d '\r\n')
 echo -e "                         ${BIWhite}${UWhite}About${NC}"
@@ -259,7 +259,7 @@ case $opt in
 10) clear ; systemctl restart xray; systemctl restart ws-stunnel; systemctl restart nginx; systemctl restart fail2ban; systemctl restart dropbear; systemctl restart ssh; systemctl restart stunnel4;
     clear; echo -e "${OKEY} Successfull Restarted All Service";
     ;;
-6969) clear ; wget https://raw.githubusercontent.com/andre-sakti/ranjau-darate/main/update.sh && chmod +x update.sh && ./update.sh && rm -f /root/update.sh ;;
+6969) clear ; wget https://raw.githubusercontent.com/andresakti7/ranjau-darate/main/update.sh && chmod +x update.sh && ./update.sh && rm -f /root/update.sh ;;
 0) clear ; menu ;;
 x) exit ;;
 *) echo -e "" ; echo "Press any key to back exit" ; sleep 1 ; exit ;;
