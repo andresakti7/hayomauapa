@@ -237,6 +237,7 @@ echo -e " ${BICyan}│   ${BICyan}[${BIWhite}02${BICyan}] VMESS   ${BICyan}[${BI
 echo -e " ${BICyan}│   ${BICyan}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}08${BICyan}] ADD-HOST      ${NC}" "${BICyan}     │"
 echo -e " ${BICyan}│   ${BICyan}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "     ${BICyan}[${BIWhite}09${BICyan}] GEN SSL             │"
 echo -e " ${BICyan}│   ${BICyan}[${BIWhite}05${BICyan}] SS WS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}10${BICyan}] Restart Service   ${BICyan}  │${NC}"
+echo -e " ${BICyan}│   ${BICyan}[${BIWhite}0A${BICyan}] Cek Bandwidth   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "   
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e " ${BICyan}┌─────────────────────────────────────┐${NC}"
 echo -e " ${BICyan}│  Version       :\033[1;36m 1.0\e[0m"
@@ -256,6 +257,7 @@ case $opt in
 7) clear ; menu-bckp ;;
 8) clear ; addhost ;;
 9) clear ; genssl ;;
+A) clear ; cek-bandwidth ;;
 10) clear ; systemctl restart xray; systemctl restart ws-stunnel; systemctl restart nginx; systemctl restart fail2ban; systemctl restart dropbear; systemctl restart ssh; systemctl restart stunnel4;
     clear; echo -e "${OKEY} Successfull Restarted All Service";
     ;;
