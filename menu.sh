@@ -237,7 +237,7 @@ echo -e " ${BICyan}│   ${BICyan}[${BIWhite}02${BICyan}] VMESS   ${BICyan}[${BI
 echo -e " ${BICyan}│   ${BICyan}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}08${BICyan}] ADD-HOST      ${NC}" "${BICyan}     │"
 echo -e " ${BICyan}│   ${BICyan}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "     ${BICyan}[${BIWhite}09${BICyan}] GEN SSL             │"
 echo -e " ${BICyan}│   ${BICyan}[${BIWhite}05${BICyan}] SS WS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}10${BICyan}] Restart Service   ${BICyan}  │${NC}"
-echo -e " ${BICyan}│   ${BICyan}[${BIWhite}11${BICyan}] Cek Bandwidth   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  
+echo -e " ${BICyan}│   ${BICyan}[${BIWhite}11${BICyan}] Cek Bandwidth   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"   "     ${BICyan}[${BIWhite}12${BICyan}] Limit Speed   ${BICyan}  │${NC}"
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e " ${BICyan}┌─────────────────────────────────────┐${NC}"
 echo -e " ${BICyan}│  Version       :\033[1;36m 1.0\e[0m"
@@ -258,6 +258,7 @@ case $opt in
 8) clear ; addhost ;;
 9) clear ; genssl ;;
 11) clear ; wget https://raw.githubusercontent.com/andresakti7/ranjau-darate/main/cek-bandwidth.sh && chmod +x cek-bandwidth.sh && ./cek-bandwidth.sh && rm -f /root/cek-bandwidth.sh ;;
+12) clear ; wget https://raw.githubusercontent.com/andresakti7/ranjau-darate/main/limitspeed.sh && chmod +x limitspeed.sh && ./limitspeed.sh && rm -f /root/limitspeed.sh ;;
 10) clear ; systemctl restart xray; systemctl restart ws-stunnel; systemctl restart nginx; systemctl restart fail2ban; systemctl restart dropbear; systemctl restart ssh; systemctl restart stunnel4;
     clear; echo -e "${OKEY} Successfull Restarted All Service";
     ;;
