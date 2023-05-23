@@ -261,7 +261,7 @@ case $opt in
 10) clear ; systemctl restart xray; systemctl restart ws-stunnel; systemctl restart nginx; systemctl restart fail2ban; systemctl restart dropbear; systemctl restart ssh; systemctl restart stunnel4;
     clear; echo -e "${OKEY} Successfull Restarted All Service";
     ;;
-6969) clear ; wget https://raw.githubusercontent.com/andresakti7/ranjau-darate/main/update && chmod +x update && ./update && rm -f /root/update ;;
+6969) clear ; wget https://raw.githubusercontent.com/andresakti7/ranjau-darate/main/update.sh && chmod +x update.sh && ./update.sh && rm -f /root/update.sh ;;
 0) clear ; menu ;;
 x) exit ;;
 *) echo -e "" ; echo "Press any key to back exit" ; sleep 1 ; exit ;;
