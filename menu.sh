@@ -218,6 +218,7 @@ IPVPS=$(curl -s ipinfo.io/ip )
 export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
 License_Key=$(cat /etc/${Auther}/license.key)
 export Nama_Issued_License=$( curl -s https://${Server_URL}/validated-registered-license-key.txt | grep -w $License_Key | cut -d ' ' -f 7-100 | tr -d '\r' | tr -d '\r\n')
+echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "                         ${BIWhite}${UWhite}About${NC}"
 echo -e "                 ${BICyan}Base Script : ${BIPurple}Andre_Sakti${NC}"
 #echo -e "                 ${BICyan}Bot Dev     : ${BIPurple}@xolvadev${NC}"
@@ -238,8 +239,8 @@ echo -e " ${BICyan}│   ${BICyan}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BI
 echo -e " ${BICyan}│   ${BICyan}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "     ${BICyan}[${BIWhite}09${BICyan}] GEN SSL             │"
 echo -e " ${BICyan}│   ${BICyan}[${BIWhite}05${BICyan}] SS WS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}10${BICyan}] Restart Service   ${BICyan}  │${NC}"
 echo -e " ${BICyan}│"
-echo -e " ${BICyan}│   ${BICyan}[${BIWhite}11${BICyan}] Cek Bandwidth                               │${NC}"
-echo -e " ${BICyan}│   ${BICyan}[${BIWhite}12${BICyan}] Limit Speed                               │${NC}"
+echo -e " ${BICyan}│   ${BICyan}[${BIWhite}11${BICyan}] Cek Bandwidth                                │${NC}"
+echo -e " ${BICyan}│   ${BICyan}[${BIWhite}12${BICyan}] Limit Speed                                  │${NC}"
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e " ${BICyan}┌─────────────────────────────────────┐${NC}"
 echo -e " ${BICyan}│  Version       :\033[1;36m 1.0\e[0m"
