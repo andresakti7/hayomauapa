@@ -407,7 +407,7 @@ sts="${Error}"
 fi
 clear
 echo -e "\e[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"   
-echo -e "\E[0;41;37m                Limit Bandwidth Speed                           \E[0m"
+echo -e "\E[0;41;37m                Limit Bandwidth Speed                          \E[0m"
 echo -e "\e[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e " Status $sts"
 echo -e "  1. Start Limit"
