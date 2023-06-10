@@ -48,8 +48,8 @@ export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
 # // Exporting URL Host
-export Server_URL="raw.githubusercontent.com/andre-sakti/test/main"
-export Server1_URL="raw.githubusercontent.com/andre-sakti/limit/main"
+export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
+export Server1_URL="raw.githubusercontent.com/andresakti7/limit/main"
 export Server_Port="443"
 export Server_IP="underfined"
 export Script_Mode="Stable"
@@ -1106,11 +1106,11 @@ uptime=$(neofetch | grep "Uptime" | cut -d: -f2 | sed 's/ //g')
 cpu=$(neofetch | grep "CPU" | cut -d: -f2 | sed 's/ //g')
 memory=$(neofetch | grep "Memory" | cut -d: -f2 | sed 's/ //g')
 #echo -e "Getting Information..."
-export sem=$( curl -s https://raw.githubusercontent.com/andre-sakti/test/main/versions)
+export sem=$( curl -s https://raw.githubusercontent.com/andresakti7/test/main/versions)
 export pak=$( cat /home/.ver)
 IPVPS=$(curl -s ipinfo.io/ip )
 ISPVPS=$( curl -s ipinfo.io/org )
-export Server_URL="raw.githubusercontent.com/andre-sakti/test/main"
+export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
 License_Key=$(cat /etc/${Auther}/license.key)
 export Nama_Issued_License=$( curl -s https://${Server_URL}/validated-registered-license-key.txt | grep -w $License_Key | cut -d ' ' -f 7-100 | tr -d '\r' | tr -d '\r\n')
 clear
@@ -1166,8 +1166,8 @@ case $opt in
 7) clear ; limitspeed ;;
 8) clear ; menu-bckp ;;
 9) clear ; cek-bandwidth ;;
-#007) clear ; wget https://raw.githubusercontent.com/andre-sakti/ranjau-darate/main/cek-bandwidth.sh && chmod +x cek-bandwidth.sh && ./cek-bandwidth.sh && rm -f /root/cek-bandwidth.sh ;;
-#008) clear ; wget https://raw.githubusercontent.com/andre-sakti/ranjau-darate/main/limitspeed.sh && chmod +x limitspeed.sh && ./limitspeed.sh && rm -f /root/limitspeed.sh ;;
+#007) clear ; wget https://raw.githubusercontent.com/andresakti7/ranjau-darate/main/cek-bandwidth.sh && chmod +x cek-bandwidth.sh && ./cek-bandwidth.sh && rm -f /root/cek-bandwidth.sh ;;
+#008) clear ; wget https://raw.githubusercontent.com/andresakti7/ranjau-darate/main/limitspeed.sh && chmod +x limitspeed.sh && ./limitspeed.sh && rm -f /root/limitspeed.sh ;;
 10) clear ; x-bw ;;
 11) clear ; addhost ;;
 12) clear ; genssl ;;
@@ -1186,10 +1186,10 @@ read -n 1 -s -r -p "Press any key to back on menu"
 
 menu
 }
-export sem=$( curl -s https://raw.githubusercontent.com/andre-sakti/test/main/versions)
+export sem=$( curl -s https://raw.githubusercontent.com/andresakti7/test/main/versions)
 export pak=$( cat /home/.ver)
 IPVPS=$(curl -s ipinfo.io/ip )
-export Server_URL="raw.githubusercontent.com/andre-sakti/test/main"
+export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
 License_Key=$(cat /etc/${Auther}/license.key)
 export Nama_Issued_License=$( curl -s https://${Server_URL}/validated-registered-license-key.txt | grep -w $License_Key | cut -d ' ' -f 7-100 | tr -d '\r' | tr -d '\r\n')
 #information
@@ -1387,11 +1387,11 @@ clear
 echo -e "\e[$banner_colour"
 #figlet -f $ascii "$banner"
 #echo -e "\e[$text  VPS Script"
-export sem=$( curl -s https://raw.githubusercontent.com/andre-sakti/test/main/versions)
+export sem=$( curl -s https://raw.githubusercontent.com/andresakti7/test/main/versions)
 export pak=$( cat /home/.ver)
 IPVPS=$(curl -s ipinfo.io/ip )
 ISPVPS=$( curl -s ipinfo.io/org )
-export Server_URL="raw.githubusercontent.com/andre-sakti/test/main"
+export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
 License_Key=$(cat /etc/${Auther}/license.key)
 export Nama_Issued_License=$( curl -s https://${Server_URL}/validated-registered-license-key.txt | grep -w $License_Key | cut -d ' ' -f 7-100 | tr -d '\r' | tr -d '\r\n')
 clear
