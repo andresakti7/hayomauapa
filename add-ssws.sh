@@ -51,8 +51,8 @@ export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
 # // Exporting URL Host
-export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
-export Server1_URL="raw.githubusercontent.com/andresakti7/limit/main"
+export Server_URL="raw.githubusercontent.com/andre-sakti/test/main"
+export Server1_URL="raw.githubusercontent.com/andre-sakti/limit/main"
 export Server_Port="443"
 export Server_IP="underfined"
 export Script_Mode="Stable"
@@ -153,10 +153,10 @@ cipher="2022-blake3-aes-128-gcm"
 pws=$(openssl rand -base64 16)
 read -p "Expired (days): " masaaktif
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#ssws$/a\### '"$user $exp"'\
+sed -i '/#ssws$/a\###ssws '"$user $exp"'\
 },{"password": "'""$pws""'","email": "'""$user""'"' /etc/xray/config.json
-sed -i '/#ssgrpc$/a\### '"$user $exp"'\
-},{"password": "'""$pws""'","email": "'""$user""'"' /etc/xray/config.json
+sed -i '/#ssgrpc$/a\###ssws '"$user $exp"'\
+},{"password": "'""$pws""'","email": "'""$user""'"' /etc/xray/grpcconfig.json
 systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
 tmp1=$(echo -n "2022-blake3-aes-128-gcm:${sspwd}:${pws}" | base64 -w0)
@@ -186,6 +186,7 @@ echo -e "Link gRPC : $linkss2" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
 echo -e "Expired On : $exp" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "Script Mod By Andre Sakti"
 echo "" | tee -a /etc/log-create-user.log
 read -n 1 -s -r -p "Press any key to back on menu"
 

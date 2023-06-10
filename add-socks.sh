@@ -153,10 +153,10 @@ xray-menu
 read -rp "Password: " -e pwd
 read -p "Expired (days): " masaaktif
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#socksws$/a\### '"$user $exp"'\
+sed -i '/#socksws$/a\###sckws '"$user $exp"'\
 },{"user": "'""$user""'","pass": "'""$pwd""'"' /etc/xray/config.json
-sed -i '/#socksgrpc$/a\### '"$user $exp"'\
-},{"user": "'""$user""'","pass": "'""$pwd""'"' /etc/xray/config.json
+sed -i '/#socksgrpc$/a\###sckws '"$user $exp"'\
+},{"user": "'""$user""'","pass": "'""$pwd""'"' /etc/xray/grpcconfig.json
 systemctl restart xray
 cat > /home/vps/public_html/socksws-$user.txt <<-END
 {
@@ -409,6 +409,7 @@ echo -e "Link  GRPC : http://${domain}:81/socksgrpc-$user.txt" | tee -a /etc/log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
 echo -e "Expired On : $exp" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "Script Mod By Andre Sakti"
 echo "" | tee -a /etc/log-create-user.log
 read -n 1 -s -r -p "Press any key to back on menu"
 
