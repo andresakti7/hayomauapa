@@ -208,7 +208,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vls " "/etc/xray/config.json")
     systemctl restart xray > /dev/null 2>&1
     clear
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    echo " Vless  Account Was Successfully Renewed"
+    echo " Vless Account Was Successfully Renewed"
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo ""
     echo " Client Name : $user"
