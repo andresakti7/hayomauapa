@@ -160,7 +160,7 @@ rm -rf /tmp/other.txt
 
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
-menu
+menu-vmess
 }
 function renewws(){
 clear
@@ -218,7 +218,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vms " "/etc/xray/config.json")
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo ""
     read -n 1 -s -r -p "Press any key to back on menu"
-    menu
+    menu-vmess
   fi
 }
 function delws() {
@@ -264,7 +264,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vms " "/etc/xray/config.json")
     echo ""
     read -n 1 -s -r -p "Press any key to back on menu"
     
-    menu
+    menu-vmess
     fi
 }
 function showconfigvms() {
@@ -379,8 +379,8 @@ echo -e "Expired On : $exp $time" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
 echo -e "Script Mod By Andre Sakti"
 echo "" | tee -a /etc/log-create-user.log
-rm /etc/xray/$user-tls.json > /dev/null 2>&1
-rm /etc/xray/$user-none.json > /dev/null 2>&1
+#rm /etc/xray/$user-tls.json > /dev/null 2>&1
+#rm /etc/xray/$user-none.json > /dev/null 2>&1
 read -n 1 -s -r -p "Press any key to back on menu"
 menu-vmess
 }
@@ -482,6 +482,7 @@ echo "" | tee -a /etc/log-create-user.log
 rm /etc/xray/$user-tls.json > /dev/null 2>&1
 rm /etc/xray/$user-none.json > /dev/null 2>&1
 read -n 1 -s -r -p "Press any key to back on menu"
+menu-vmess
 }
 clear
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
