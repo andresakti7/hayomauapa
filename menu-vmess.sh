@@ -193,7 +193,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vms " "/etc/xray/config.json")
     menu
     else
     read -p "Expired (days): " masaaktif
-    uuid1=$(grep -wE "^###vms $user" "/etc/xray/config.json" | cut -d ' ' -f 7 | sort | uniq)
+    uuid1=$(grep -wE "^###vms $user" "/etc/xray/config.json" | cut -d ' ' -f 7-9 | sort | uniq)
     exp=$(grep -wE "^###vms $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
     now=$(date +%Y-%m-%d)
     d1=$(date -d "$exp" +%s)
