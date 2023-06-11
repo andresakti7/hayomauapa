@@ -190,6 +190,8 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
 	grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | nl -s ') ' | lolcat
 	echo ""
 	echo ""
+	echo ""
+	echo ""
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
 		if [[ ${CLIENT_NUMBER} == '1' ]]; then
 			read -rp "Select one client [1]: " CLIENT_NUMBER
@@ -247,7 +249,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo "  User       Expired  " 
 	echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-	grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | column -t | sort | uniq
+	grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | column -t | sort | uniq | lolcat
     echo ""
     red "tap enter to go back"
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
@@ -263,8 +265,8 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo " Trojan Account Deleted Successfully"
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    echo " Client Name : $user"
-    echo " Expired On  : $exp"
+    echo " Client Name : $user" | lolcat
+    echo " Expired On  : $exp" | lolcat
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo ""
     read -n 1 -s -r -p "Press any key to back on menu"
@@ -289,7 +291,11 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
 	echo "Select the existing client you want to show the config"
 	echo " Press CTRL+C to return"
 	echo -e "==============================="
-	grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | nl -s ') '
+	grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | nl -s ') ' | lolcat
+	echo ""
+	echo ""
+	echo ""
+	echo ""
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
 		if [[ ${CLIENT_NUMBER} == '1' ]]; then
 			read -rp "Select one client [1]: " CLIENT_NUMBER
