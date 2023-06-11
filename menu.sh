@@ -1422,7 +1422,7 @@ echo -e "   \e[$text    Upload${NC}       \e[${text}$today_rx $today_rxv      $y
 echo -e "   \e[$text    Total${NC}      \e[${text}  $todayd $today_v     $yesterday $yesterday_v     $month $month_v  \e[0m "
 echo -e " \e[$line╘════════════════════════════════════════════════════════════╛\e[m"
 #echo -e "                       \E[0;41;37m LIST ACCOUNTS \E[0m" 
-echo -e "                          LIST ACCOUNTS " | lolcat
+echo -e "                        $BOLD $UNDERLINE LIST ACCOUNTS " | lolcat
 echo -e " \e[$yy    SSH      Vmess     Vless    Trojan-Ws   SS-WS    SOCK-WS$yy "  
 echo -e " \e[$below     $total_ssh         $vmess         $vless         $trws          $ssws         $shockws \e[0m "
 echo -e " \e[$yy  Account   Account   Account    Account   Account   Account$yy "  
