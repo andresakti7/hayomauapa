@@ -161,7 +161,7 @@ rm -rf /tmp/other.txt
 
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
-menu
+menu-vless
 }
 function renewws(){
 clear
@@ -177,7 +177,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vls " "/etc/xray/config.json")
 		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
         echo ""
         read -n 1 -s -r -p "Press any key to back on menu"
-        menu
+        menu-vless
 	fi
 
 	clear
@@ -219,7 +219,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vls " "/etc/xray/config.json")
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo ""
     read -n 1 -s -r -p "Press any key to back on menu"
-    menu
+    menu-vless
   fi
 }
 function delws() {
@@ -234,7 +234,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vls " "/etc/xray/config.json")
 		echo ""
 		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 		read -n 1 -s -r -p "Press any key to back on menu"
-        menu
+        menu-vless
 	fi
 
 	clear
@@ -265,7 +265,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vls " "/etc/xray/config.json")
     echo ""
     read -n 1 -s -r -p "Press any key to back on menu"
     
-    menu
+    menu-vless
     fi
 }
 function showconfigvls() {
