@@ -233,7 +233,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vms " "/etc/xray/config.json")
 		echo ""
 		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 		read -n 1 -s -r -p "Press any key to back on menu"
-        menu
+        menu-vmess
 	fi
 
 	clear
