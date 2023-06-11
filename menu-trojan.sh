@@ -154,7 +154,7 @@ lastlogin=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -
 echo -e "user :${GREEN} ${akun} ${NC}
 ${RED}Online Jam ${NC}: ${lastlogin} wib";
 echo -e "$jum2";
-echo "-------------------------------"
+echo "-------------------------------" | lolcat
 fi
 rm -rf /tmp/ipxray.txt
 done
@@ -168,17 +168,26 @@ clear
 NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 		clear
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo -e "\\E[0;41;36m            Renew Trojan            \E[0m"
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 		echo ""
 		echo "You have no existing clients!"
-		exit 1
+                echo ""
+		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo ""
+        read -n 1 -s -r -p "Press any key to back on menu"
+        menu-trojan
 	fi
 
 	clear
-	echo ""
-	echo "Select the existing client you want to renew"
+	echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo -e "\\E[0;41;36m            Renew Trojan            \E[0m"
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+	echo " Select the existing client you want to renew"
 	echo " Press CTRL+C to return"
-	echo -e "==============================="
-	grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | nl -s ') '
+	echo ""
+	grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | nl -s ') ' | lolcat
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
 		if [[ ${CLIENT_NUMBER} == '1' ]]; then
 			read -rp "Select one client [1]: " CLIENT_NUMBER
@@ -201,16 +210,16 @@ harini=`date -d "0 days" +"%Y-%m-%d %T"`
 sed -i "/###trs $user/c\###trs $user $exp4 $harini $uuid" /etc/xray/config.json
 sed -i "/###trs $user/c\###trs $user $exp4 $harini $uuid" /etc/xray/grpcconfig.json
 clear
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo " Trojan  Account Was Successfully Renewed"
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo " Trojan Account Was Successfully Renewed" | lolcat
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo ""
-echo " Client Name : $user"
-echo " Renewed On  : $harini"
-echo " Expired On  : $exp4"
-echo " Password    : $uuid"
+echo " Client Name : $user" | lolcat
+echo " Renewed On  : $harini" | lolcat
+echo " Expired On  : $exp4" | lolcat
+echo " Password    : $uuid" | lolcat
 echo ""
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu-trojan
