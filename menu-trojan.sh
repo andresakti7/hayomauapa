@@ -161,7 +161,7 @@ done
 rm -rf /tmp/other.txt
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
-menu
+menu-trojan
 }
 function renewws(){
 clear
@@ -177,7 +177,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
 		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
         echo ""
         read -n 1 -s -r -p "Press any key to back on menu"
-        menu
+        menu-trojan
 	fi
 
 	clear
@@ -219,7 +219,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo ""
     read -n 1 -s -r -p "Press any key to back on menu"
-    menu
+    menu-trojan
   fi
 }
 function delws() {
@@ -265,7 +265,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
     echo ""
     read -n 1 -s -r -p "Press any key to back on menu"
     
-    menu
+    menu-trojan
     fi
 }
 function showconfigtr() {
