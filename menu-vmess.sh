@@ -122,9 +122,9 @@ function cekws() {
 clear
 echo -n > /tmp/other.txt
 data=( `cat /etc/xray/config.json | grep '###vms' | cut -d ' ' -f 2 | sort | uniq`);
-echo "-------------------------------"; | lolcat
-echo "-----=[ XRAY User Login ]=-----"; | lolcat
-echo "-------------------------------"; | lolcat
+echo "-------------------------------";
+echo "-----=[ XRAY User Login ]=-----";
+echo "-------------------------------";
 for akun in "${data[@]}"
 do
 if [[ -z "$akun" ]]; then
@@ -152,7 +152,7 @@ lastlogin=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -
 echo -e "user :${GREEN} ${akun} ${NC}
 ${RED}Online Jam ${NC}: ${lastlogin} wib";
 echo -e "$jum2";
-echo "-------------------------------" | lolcat
+echo "-------------------------------" |
 fi
 rm -rf /tmp/ipxray.txt
 done
@@ -222,7 +222,6 @@ echo -e "━━━━━━━━━━━━━━━━━━━━━━━�
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu-vmess
-fi
 }
 function delws() {
 clear
