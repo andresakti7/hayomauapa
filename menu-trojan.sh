@@ -165,7 +165,7 @@ menu-trojan
 }
 function renewws(){
 clear
-NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/trojan/config.json")
+NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 		clear
 		echo ""
@@ -178,7 +178,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/trojan/config.json")
 	echo "Select the existing client you want to renew"
 	echo " Press CTRL+C to return"
 	echo -e "==============================="
-	grep -E "^###trs " "/etc/trojan/config.json" | cut -d ' ' -f 2-4 | nl -s ') '
+	grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | nl -s ') '
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
 		if [[ ${CLIENT_NUMBER} == '1' ]]; then
 			read -rp "Select one client [1]: " CLIENT_NUMBER
@@ -187,9 +187,9 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/trojan/config.json")
 		fi
 	done
 read -p "Expired (days): " masaaktif
-user=$(grep -E "^###trs " "/etc/trojan/config.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
-uuid=$(grep -E "^###trs " "/etc/trojan/config.json" | cut -d ' ' -f 7-9 | sed -n "${CLIENT_NUMBER}"p)
-exp=$(grep -E "^###trs " "/etc/trojan/config.json" | cut -d ' ' -f 3-4 | sed -n "${CLIENT_NUMBER}"p)
+user=$(grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+uuid=$(grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 7-9 | sed -n "${CLIENT_NUMBER}"p)
+exp=$(grep -E "^###trs " "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sed -n "${CLIENT_NUMBER}"p)
 now=$(date +%Y-%m-%d)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
