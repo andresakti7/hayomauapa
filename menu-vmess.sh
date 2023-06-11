@@ -398,7 +398,7 @@ function VmessTrial() {
 clear
 domain=$(cat /etc/xray/domain)
 
-tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
+tr="$(cat ~/log-install.txt | grep -w "Vmess TLS" | cut -d: -f2|sed 's/ //g')"
 user=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 uuid=$(cat /proc/sys/kernel/random/uuid)
 masaaktif=59 * * * *
@@ -406,7 +406,7 @@ exp=`date -d "$masaaktif hours" +"%Y-%m-%d %T"`
 harini=`date -d "0 days" +"%Y-%m-%d %T"`
 sed -i '/#vmess$/a\###vms '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
-exp=`date -d "$masaaktif days" +"%Y-%m-%d %T"`
+exp=`date -d "$masaaktif hours" +"%Y-%m-%d %T"`
 sed -i '/#vmessgrpc$/a\###vms '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/grpcconfig.json
 asu=`cat<<EOF
@@ -489,8 +489,8 @@ echo -e "Expired On : $exp" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
 echo -e "Script Mod By Andre Sakti"
 echo "" | tee -a /etc/log-create-user.log
-rm /etc/xray/$user-tls.json > /dev/null 2>&1
-rm /etc/xray/$user-none.json > /dev/null 2>&1
+#rm /etc/xray/$user-tls.json > /dev/null 2>&1
+#rm /etc/xray/$user-none.json > /dev/null 2>&1
 read -n 1 -s -r -p "Press any key to back on menu"
 menu-vmess
 }
