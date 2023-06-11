@@ -123,9 +123,9 @@ function cekws() {
 clear
 echo -n > /tmp/other.txt
 data=( `cat /etc/xray/config.json | grep '###vls' | cut -d ' ' -f 2 | sort | uniq`);
-echo "-------------------------------";
-echo "-----=[ XRAY User Login ]=-----";
-echo "-------------------------------";
+echo "-------------------------------"; | lolcat
+echo "-----=[ XRAY User Login ]=-----"; | lolcat
+echo "-------------------------------"; | lolcat
 for akun in "${data[@]}"
 do
 if [[ -z "$akun" ]]; then
@@ -173,54 +173,57 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vls " "/etc/xray/config.json")
         echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 		echo ""
 		echo "You have no existing clients!"
-		echo ""
+                echo ""
 		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
         echo ""
         read -n 1 -s -r -p "Press any key to back on menu"
-        menu-vless
+        menu
 	fi
 
 	clear
 	echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    echo -e "\\E[0;41;36m            Renew Vless            \E[0m"
-    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    echo ""
-  	grep -E "^###vls " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | column -t | sort | uniq
-    echo ""
-    red "tap enter to go back"
-    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-	read -rp "Input Username : " user
-    if [ -z $user ]; then
-    menu
-    else
-    read -p "Expired (days): " masaaktif
-    uuid1=$(grep -wE "^###vls $user" "/etc/xray/config.json" | cut -d ' ' -f 7-9 | sort | uniq)
-    exp=$(grep -wE "^###vls $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
-    now=$(date +%Y-%m-%d)
-    d1=$(date -d "$exp" +%s)
-    d2=$(date -d "$now" +%s)
-    exp2=$(( (d1 - d2) / 86400 ))
-    exp3=$(($exp2 + $masaaktif))
-    exp4=`date -d "$exp3 days" +"%Y-%m-%d %T"`
-    harini=`date -d "0 days" +"%Y-%m-%d %T"`
-    sed -i "/###vls $user/c\###vls $user $exp4 $harini $uuid1" /etc/xray/config.json
-    sed -i "/###vls $user/c\###vls $user $exp4 $harini $uuid1" /etc/xray/grpcconfig.json
-    systemctl restart xray > /dev/null 2>&1
-    clear
-    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    echo " Vless Account Was Successfully Renewed"
-    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    echo ""
-    echo " Client Name : $user"
-    echo " Renewed On  : $harini"
-    echo " Expired On  : $exp4"
-    echo " Password    : $uuid1"
-    echo ""
-    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-    echo ""
-    read -n 1 -s -r -p "Press any key to back on menu"
-    menu-vless
-  fi
+        echo -e "\\E[0;41;36m            Renew Vless            \E[0m"
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+	echo " Select the existing client you want to renew"
+	echo " Press CTRL+C to return"
+	echo ""
+	grep -E "^###vls " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | nl -s ') '
+	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
+		if [[ ${CLIENT_NUMBER} == '1' ]]; then
+			read -rp "Select one client [1]: " CLIENT_NUMBER
+		else
+			read -rp "Select one client [1-${NUMBER_OF_CLIENTS}]: " CLIENT_NUMBER
+		fi
+	done
+read -p "Expired (days): " masaaktif
+user=$(grep -E "^###vls " "/etc/xray/config.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+uuid=$(grep -E "^###vls " "/etc/xray/config.json" | cut -d ' ' -f 7-9 | sed -n "${CLIENT_NUMBER}"p)
+exp=$(grep -E "^###vls " "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sed -n "${CLIENT_NUMBER}"p)
+now=$(date +%Y-%m-%d)
+d1=$(date -d "$exp" +%s)
+d2=$(date -d "$now" +%s)
+exp2=$(( (d1 - d2) / 86400 ))
+exp3=$(($exp2 + $masaaktif))
+exp4=`date -d "$exp3 days" +"%Y-%m-%d %T"`
+harini=`date -d "0 days" +"%Y-%m-%d %T"`
+#sed -i "s/###trs $user $exp/### $user $exp4/g" /etc/trojan/akun.conf
+sed -i "/###vls $user/c\###vls $user $exp4 $harini $uuid" /etc/xray/config.json
+sed -i "/###vls $user/c\###vls $user $exp4 $harini $uuid" /etc/xray/grpcconfig.json
+clear
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo " Vless  Account Was Successfully Renewed"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo ""
+echo " Client Name : $user"
+echo " Renewed On  : $harini"
+echo " Expired On  : $exp4"
+echo " Password    : $uuid"
+echo ""
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu"
+menu-vless
+fi
 }
 function delws() {
 clear
