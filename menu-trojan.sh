@@ -240,7 +240,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
 		echo ""
 		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 		read -n 1 -s -r -p "Press any key to back on menu"
-        menu
+        menu-trojan
 	fi
 
 	clear
@@ -255,7 +255,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###trs " "/etc/xray/config.json")
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 	read -rp "Input Username : " user
     if [ -z $user ]; then
-    menu
+    menu-trojan
     else
     exp=$(grep -wE "^###trs $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
     sed -i "/^###trs $user $exp/,/^},{/d" /etc/xray/config.json
