@@ -255,7 +255,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^###vls " "/etc/xray/config.json")
     echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 	read -rp "Input Username : " user
     if [ -z $user ]; then
-    menu
+    menu-vless
     else
     exp=$(grep -wE "^###vls $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
     sed -i "/^###vls $user $exp/,/^},{/d" /etc/xray/config.json
