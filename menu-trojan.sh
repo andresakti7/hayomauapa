@@ -351,7 +351,7 @@ domain=$(cat /etc/xray/domain)
 tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 user=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 uuid=$(cat /proc/sys/kernel/random/uuid)
-masaaktif=15
+masaaktif=7
 exp=`date -d "$masaaktif minutes" +"%Y-%m-%d %T"`
 harini=`date -d "0 days" +"%Y-%m-%d %T"`
 sed -i '/#trojanws$/a\###trs '"$user $exp $harini $uuid"'\
