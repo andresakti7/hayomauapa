@@ -118,10 +118,10 @@ else
 fi
 ##----- Auto Remove Vmess
 data=( `cat /etc/xray/config.json | grep '^###vms' | cut -d ' ' -f 2 | sort | uniq`);
-now=`date +"%Y-%m-%d %T"`
+now=`date +"%Y-%m-%d"`
 for user in "${data[@]}"
 do
-exp=$(grep -wE "^###vms $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
+exp=$(grep -E "^###vms $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
 exp2=$(( (d1 - d2) / 86400 ))
@@ -137,7 +137,7 @@ data=( `cat /etc/xray/config.json | grep '^###vls' | cut -d ' ' -f 2 | sort | un
 now=`date +"%Y-%m-%d %T"`
 for user in "${data[@]}"
 do
-exp=$(grep -wE "^###vls $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
+exp=$(grep -E "^###vls $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
 exp2=$(( (d1 - d2) / 86400 ))
