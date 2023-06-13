@@ -118,7 +118,7 @@ else
 fi
 ##----- Auto Remove Vmess
 data=( `cat /etc/xray/config.json | grep '^###vms' | cut -d ' ' -f 2 | sort | uniq`);
-now=`date +"%Y-%m-%d %T"`
+now=`date +"%Y-%m-%d"`
 for user in "${data[@]}"
 do
 exp=$(grep -w "^###vms $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
