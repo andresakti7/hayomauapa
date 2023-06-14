@@ -1426,7 +1426,7 @@ echo -e " \e[$line╘═══════════════════�
 #echo -e "                       \E[0;41;37m LIST ACCOUNTS \E[0m" 
 echo -e "                        $BOLD $UNDERLINE LIST ACCOUNTS " | lolcat
 echo -e " \e[$yy    SSH      Vmess     Vless    Trojan-Ws   SS-WS    SOCK-WS$yy "  
-echo -e " \e[$below     $total_ssh         $vmess         $vless         $trws          $ssws         $shockws \e[0m "
+echo -e " \e[$below     $total_ssh         $vmess2         $vless         $trws          $ssws         $shockws \e[0m "
 echo -e " \e[$yy  Account   Account   Account    Account   Account   Account$yy "  
 echo -e " \e[$line╒════════════════════════════════════════════════════════════╕\e[m"
 #echo -e "  \e[   $yyExpired Status :$wh $(cat /etc/${Auther}/license-remaining-active-days.db)$wh Days$wh" | lolcat
