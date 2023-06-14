@@ -1352,6 +1352,8 @@ d2=$(date -d "$today" +%s)
 certifacate=$(((d1 - d2) / 86400))
 # TOTAL ACC CREATE VMESS WS
 vmess=$(grep -c -E "^###vms " "/etc/xray/config.json")
+vmess1=$(grep -c -E "^###vmstrial " "/etc/xray/config.json")
+vmess2=$(vmess + vmess1)
 # TOTAL ACC CREATE  VLESS WS
 vless=$(grep -c -E "^###vls " "/etc/xray/config.json")
 # TOTAL ACC CREATE  VLESS TCP XTLS
