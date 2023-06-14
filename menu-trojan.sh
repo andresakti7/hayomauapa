@@ -397,6 +397,166 @@ echo "" | tee -a /etc/log-create-user.log
 read -n 1 -s -r -p "Press any key to back on menu Trojan"
 menu-trojan
 }
+function delwstrial() {
+clear
+NUMBER_OF_CLIENTS=$(grep -c -E "^###trstrial " "/etc/xray/config.json")
+	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
+		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo -e "\\E[0;41;36m       Delete Trojan  Account        \E[0m"
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+		echo ""
+		echo "You have no existing clients!"
+		echo ""
+		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+		read -n 1 -s -r -p "Press any key to back on menu"
+        menu-trojan
+	fi
+
+	clear
+	echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "\\E[0;41;36m       Delete Trojan  Account        \E[0m"
+    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo "  User       Expired  " 
+	echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+	grep -E "^###trstrial " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | column -t | sort | uniq | lolcat
+    echo ""
+    red "tap enter to go back"
+    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+	read -rp "Input Username : " user
+    if [ -z $user ]; then
+    menu-trojan
+    else
+    exp=$(grep -wE "^###trstrial $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
+    sed -i "/^###trstrial $user $exp/,/^},{/d" /etc/xray/config.json
+    sed -i "/^###trstrial $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
+    systemctl restart xray > /dev/null 2>&1
+    clear
+    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo " Trojan Account Deleted Successfully"
+    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo " Client Name : $user" | lolcat
+    echo " Expired On  : $exp" | lolcat
+    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo ""
+    read -n 1 -s -r -p "Press any key to back on menu"
+    
+    menu-trojan
+    fi
+}
+function cekwstrial() {
+clear
+echo -n > /tmp/other.txt
+data=( `cat /etc/xray/config.json | grep '###trstrial' | cut -d ' ' -f 2 | sort | uniq`);
+data=( `cat /etc/xray/grpcconfig.json | grep '###trstrial' | cut -d ' ' -f 2 | sort | uniq`);
+echo "-------------------------------";
+echo "-----=[ XRAY User Login ]=-----";
+echo "-------------------------------";
+for akun in "${data[@]}"
+do
+if [[ -z "$akun" ]]; then
+akun="tidakada"
+fi
+echo -n > /tmp/ipxray.txt
+data2=( `cat /var/log/xray/access.log | tail -n 500 | cut -d " " -f 3 | sed 's/tcp://g' | cut -d ":" -f 1 | sort | uniq`);
+for ip in "${data2[@]}"
+do
+jum=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -d " " -f 3 | sed 's/tcp://g' | cut -d ":" -f 1 | grep -w "$ip" | sort | uniq)
+if [[ "$jum" = "$ip" ]]; then
+echo "$jum" >> /tmp/ipxray.txt
+else
+echo "$ip" >> /tmp/other.txt
+fi
+jum2=$(cat /tmp/ipxray.txt)
+sed -i "/$jum2/d" /tmp/other.txt > /dev/null 2>&1
+done
+jum=$(cat /tmp/ipxray.txt)
+if [[ -z "$jum" ]]; then
+echo > /dev/null
+else
+jum2=$(cat /tmp/ipxray.txt | nl)
+lastlogin=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -d " " -f 2 | tail -1)
+echo -e "user :${GREEN} ${akun} ${NC}
+${RED}Online Jam ${NC}: ${lastlogin} wib";
+echo -e "$jum2";
+echo "-------------------------------"
+fi
+rm -rf /tmp/ipxray.txt
+done
+rm -rf /tmp/other.txt
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu"
+menu-trojan
+}
+function showconfigtrtrial() {
+clear
+tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
+NUMBER_OF_CLIENTS=$(grep -c -E "^###trstrial " "/etc/xray/config.json")
+	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
+		clear
+		echo ""
+		echo "You have no existing clients!"
+		exit 1
+	fi
+
+	clear
+	echo ""
+	echo "SHOW USER XRAY TROJAN WS"
+	echo "Select the existing client you want to show the config"
+	echo " Press CTRL+C to return"
+	echo -e "==============================="
+	grep -E "^###trstrial " "/etc/xray/config.json" | cut -d ' ' -f 2-4 | nl -s ') ' | lolcat
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
+		if [[ ${CLIENT_NUMBER} == '1' ]]; then
+			read -rp "Select one client [1]: " CLIENT_NUMBER
+		else
+			read -rp "Select one client [1-${NUMBER_OF_CLIENTS}]: " CLIENT_NUMBER
+		fi
+	done
+Domen=$(cat /etc/xray/domain)
+export user=$(grep -E "^###trstrial " "/etc/xray/config.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+export exp=$(grep -E "^###trstrial " "/etc/xray/config.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
+export time=$(grep -E "^###trstrial " "/etc/xray/config.json" | cut -d ' ' -f 4 | sed -n "${CLIENT_NUMBER}"p)
+export harini=$(grep -E "^###trstrial " "/etc/xray/config.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
+export timecreated=$(grep -E "^###trstrial " "/etc/xray/config.json" | cut -d ' ' -f 6 | sed -n "${CLIENT_NUMBER}"p)
+export uuid=$(grep -E "^###trstrial " "/etc/xray/config.json" | cut -d ' ' -f 7 | sed -n "${CLIENT_NUMBER}"p)
+
+
+export trojanlink3="trojan://${uuid}@${Domen}:${tr}?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=bug.com#${user}"
+export trojanlink2="trojan://${uuid}@${Domen}:${tr}?path=%2Ftrojan-ws&security=tls&host=bug.com&type=ws&sni=bug.com#${user}"
+export trojanlink="trojan://${uuid}@${Domen}:443#${user}"
+export trojanlink1="trojan://${uuid}@${Domen}:443?security=xtls&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=bug.com#${user}"
+clear
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "\E[0;41;36m           TROJAN ACCOUNT          \E[0m" | tee -a /etc/log-create-user.log
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
+echo -e "Host/IP : ${Domen}" | tee -a /etc/log-create-user.log
+echo -e "port : ${tr}" | tee -a /etc/log-create-user.log
+echo -e "Key : ${uuid}" | tee -a /etc/log-create-user.log
+echo -e "Flow : xtls-rprx-direct" | tee -a /etc/log-create-user.log
+echo -e "Path : /trojan-ws" | tee -a /etc/log-create-user.log
+echo -e "ServiceName : trojan-grpc" | tee -a /etc/log-create-user.log
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "Link WS : ${trojanlink}" | tee -a /etc/log-create-user.log
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "Link xTLS : ${trojanlink1}" | tee -a /etc/log-create-user.log
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "Link WS : ${trojanlink2}" | tee -a /etc/log-create-user.log
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "Link GRPC : ${trojanlink3}" | tee -a /etc/log-create-user.log
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "Created On : $harini $timecreated"  | tee -a /etc/log-create-user.log
+echo -e "Expired On : $exp $time" | tee -a /etc/log-create-user.log
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
+echo -e "Script Mod By Andre Sakti"
+echo "" | tee -a /etc/log-create-user.log
+read -n 1 -s -r -p "Press any key to back on menu Trojan"
+menu-trojan
+}
 clear
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "       ${BIWhite}${UWhite}Trojan ${NC}"
@@ -407,9 +567,18 @@ echo -e "     ${BICyan}[${BIWhite}03${BICyan}] Renew Trojan Account     "
 echo -e "     ${BICyan}[${BIWhite}04${BICyan}] Cek User Trojan Login    "
 #echo -e "     ${BICyan}[${BIWhite}05${BICyan}] Cek Password User XRAY     "
 echo -e "     ${BICyan}[${BIWhite}05${BICyan}] Show Config Password Trojan Account     "
+echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
+echo -e "     ${BICyan}[${BIWhite}0B${BICyan}] Back to menu     "
+echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
+echo -e "       ${BIWhite}${UWhite}Trial Trojan ${NC}"
+echo -e ""
 echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Trojan Account (active 1 hours only)     "
 #echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Trojan Account (active 1 days only)     "
-echo -e "     ${BICyan}[${BIWhite}07${BICyan}] Back to menu     "
+echo -e "     ${BICyan}[${BIWhite}07${BICyan}] Delete Trial Trojan Account     "
+#echo -e "     ${BICyan}[${BIWhite}03${BICyan}] Renew Trojan Account     "
+echo -e "     ${BICyan}[${BIWhite}08${BICyan}] Cek User Trial Trojan Login    "
+#echo -e "     ${BICyan}[${BIWhite}05${BICyan}] Cek Password User XRAY     "
+echo -e "     ${BICyan}[${BIWhite}09${BICyan}] Show Config Password Trial Trojan Account     "
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e "     ${BIYellow}Press x or [ Ctrl+C ] • To-${BIWhite}Exit${NC}"
 echo ""
@@ -422,7 +591,10 @@ case $opt in
 4) clear ; cekws ;;
 5) clear ; showconfigtr ;;
 6) clear ; TrialTrojan ;;
-7) clear ; menu ;;
+7) clear ; delwstrial ;;
+8) clear ; cekwstrial ;;
+9) clear ; showconfigtrtrial ;;
+B) clear ; menu ;;
 x) exit ;;
 *) echo -e "" ; echo "Press any key to back on menu" ; sleep 1 ; menu ;;
 esac
