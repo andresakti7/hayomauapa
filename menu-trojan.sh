@@ -351,16 +351,16 @@ domain=$(cat /etc/xray/domain)
 tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 user=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 uuid=$(cat /proc/sys/kernel/random/uuid)
-masaaktif=15
+masaaktif=60
 exp=`date -d "$masaaktif minutes" +"%Y-%m-%d %T"`
 harini=`date -d "0 days" +"%Y-%m-%d %T"`
-sed -i '/#trojanws$/a\###trs '"$user $exp $harini $uuid"'\
+sed -i '/#trojanws$/a\###trstrial '"$user $exp $harini $uuid"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
-sed -i '/#trojangrpc$/a\###trs '"$user $exp $harini $uuid"'\
+sed -i '/#trojangrpc$/a\###trstrial '"$user $exp $harini $uuid"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/grpcconfig.json
-sed -i '/#trojantcp$/a\###trs '"$user $exp $harini $uuid"'\
+sed -i '/#trojantcp$/a\###trstrial '"$user $exp $harini $uuid"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/grpcconfig.json
-sed -i '/#trojanxtls$/a\#&#trs '"$user $exp $harini $uuid"'\
+sed -i '/#trojanxtls$/a\#&#trstrial '"$user $exp $harini $uuid"'\
 },{"password": "'""$$uuid""'","flow": "'""xtls-rprx-direct""'","email": "'""$user""'"' /etc/xray/grpcconfig.json
 
 
