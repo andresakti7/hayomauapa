@@ -580,6 +580,8 @@ echo -e "     ${BICyan}[${BIWhite}08${BICyan}] Cek User Trial Trojan Login    "
 #echo -e "     ${BICyan}[${BIWhite}05${BICyan}] Cek Password User XRAY     "
 echo -e "     ${BICyan}[${BIWhite}09${BICyan}] Show Config Password Trial Trojan Account     "
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
+echo -e "     ${BICyan}[${BIWhite}10${BICyan}] Back to menu     "
+echo -e ""
 echo -e "     ${BIYellow}Press x or [ Ctrl+C ] • To-${BIWhite}Exit${NC}"
 echo ""
 read -p " Select menu : " opt
@@ -594,7 +596,7 @@ case $opt in
 7) clear ; delwstrial ;;
 8) clear ; cekwstrial ;;
 9) clear ; showconfigtrtrial ;;
-B) clear ; menu ;;
+10) clear ; menu ;;
 x) exit ;;
 *) echo -e "" ; echo "Press any key to back on menu" ; sleep 1 ; menu ;;
 esac
