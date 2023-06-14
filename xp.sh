@@ -171,7 +171,7 @@ do
 exp=$(grep -w "^###vmstrial $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
-exp2=$(( (d1 - d2) / 1800 ))
+exp2=$(( (d1 - d2) / 1 ))
 if [[ "$exp2" -le "0" ]]; then
 sed -i "/^###vmstrial $user $exp/,/^},{/d" /etc/xray/config.json
 sed -i "/^###vmstrial $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
@@ -187,7 +187,7 @@ do
 exp=$(grep -w "^###vlstrial $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
-exp2=$(( (d1 - d2) / 1800 ))
+exp2=$(( (d1 - d2) / 1 ))
 if [[ "$exp2" -le "0" ]]; then
 sed -i "/^###vlstrial $user $exp/,/^},{/d" /etc/xray/config.json
 sed -i "/^###vlstrial $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
@@ -202,7 +202,7 @@ do
 exp=$(grep -w "^###trstrial $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
-exp2=$(( (d1 - d2) / 1800 ))
+exp2=$(( (d1 - d2) / 1 ))
 if [[ "$exp2" -le "0" ]]; then
 sed -i "/^###trstrial $user $exp/,/^},{/d" /etc/xray/config.json
 sed -i "/^###trstrial $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
