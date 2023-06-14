@@ -51,8 +51,8 @@ export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
 # // Exporting URL Host
-export Server_URL="raw.githubusercontent.com/andresakti7/test/main"
-export Server1_URL="raw.githubusercontent.com/andresakti7/limit/main"
+export Server_URL="raw.githubusercontent.com/andre-sakti/test/main"
+export Server1_URL="raw.githubusercontent.com/andre-sakti/limit/main"
 export Server_Port="443"
 export Server_IP="underfined"
 export Script_Mode="Stable"
@@ -117,48 +117,48 @@ else
     echo $sisa_hari > /etc/${Auther}/license-remaining-active-days.db
 fi
 ##----- Auto Remove Vmess
-data=( `cat /etc/xray/config.json | grep '^###vms' | cut -d ' ' -f 2 | sort | uniq`);
-now=`date +"%Y-%m-%d %T"`
+data=( `cat /etc/xray/config.json | grep '^###' | cut -d ' ' -f 2 | sort | uniq`);
+now=`date +"%Y-%m-%d"`
 for user in "${data[@]}"
 do
-exp=$(grep -w "^###vms $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
+exp=$(grep -w "^### $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
 exp2=$(( (d1 - d2) / 86400 ))
-if [[ "$exp2" = "0" ]]; then
-sed -i "/^###vms $user $exp/,/^},{/d" /etc/xray/config.json
-sed -i "/^###vms $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
+if [[ "$exp2" -le "0" ]]; then
+sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
 rm -f /etc/xray/$user-tls.json /etc/xray/$user-none.json
 fi
 done
 
 #----- Auto Remove Vless
-data=( `cat /etc/xray/config.json | grep '^###vls' | cut -d ' ' -f 2 | sort | uniq`);
-now=`date +"%Y-%m-%d %T"`
+data=( `cat /etc/xray/config.json | grep '^#&' | cut -d ' ' -f 2 | sort | uniq`);
+now=`date +"%Y-%m-%d"`
 for user in "${data[@]}"
 do
-exp=$(grep -w "^###vls $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
+exp=$(grep -w "^#& $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
 exp2=$(( (d1 - d2) / 86400 ))
-if [[ "$exp2" = "0" ]]; then
-sed -i "/^###vls $user $exp/,/^},{/d" /etc/xray/config.json
-sed -i "/^###vls $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
+if [[ "$exp2" -le "0" ]]; then
+sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
 fi
 done
 
 #----- Auto Remove Trojan
-data=( `cat /etc/xray/config.json | grep '^###trs' | cut -d ' ' -f 2 | sort | uniq`);
-now=`date +"%Y-%m-%d %T"`
+data=( `cat /etc/xray/config.json | grep '^#!' | cut -d ' ' -f 2 | sort | uniq`);
+now=`date +"%Y-%m-%d"`
 for user in "${data[@]}"
 do
-exp=$(grep -w "^###trs $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
+exp=$(grep -w "^#! $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
 exp2=$(( (d1 - d2) / 86400 ))
-if [[ "$exp2" = "0" ]]; then
-sed -i "/^###trs $user $exp/,/^},{/d" /etc/xray/config.json
-sed -i "/^###trs $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
+if [[ "$exp2" -le "0" ]]; then
+sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
 fi
 done
 systemctl restart xray
