@@ -351,8 +351,8 @@ domain=$(cat /etc/xray/domain)
 tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 user=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 uuid=$(cat /proc/sys/kernel/random/uuid)
-masaaktif=15
-exp=`date -d "$masaaktif minutes" +"%Y-%m-%d %T"`
+masaaktif=1
+exp=`date -d "$masaaktif days" +"%Y-%m-%d %T"`
 harini=`date -d "0 days" +"%Y-%m-%d %T"`
 sed -i '/#trojanws$/a\###trs '"$user $exp $harini $uuid"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
@@ -407,7 +407,8 @@ echo -e "     ${BICyan}[${BIWhite}03${BICyan}] Renew Trojan Account     "
 echo -e "     ${BICyan}[${BIWhite}04${BICyan}] Cek User Trojan Login    "
 #echo -e "     ${BICyan}[${BIWhite}05${BICyan}] Cek Password User XRAY     "
 echo -e "     ${BICyan}[${BIWhite}05${BICyan}] Show Config Password Trojan Account     "
-echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Trojan Account (active 1 hours only)     "
+#echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Trojan Account (active 1 hours only)     "
+echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Trojan Account (active 1 days only)     "
 echo -e "     ${BICyan}[${BIWhite}07${BICyan}] Back to menu     "
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e "     ${BIYellow}Press x or [ Ctrl+C ] • To-${BIWhite}Exit${NC}"
