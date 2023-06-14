@@ -402,12 +402,12 @@ tls="$(cat ~/log-install.txt | grep -w "Vmess TLS" | cut -d: -f2|sed 's/ //g')"
 none="$(cat ~/log-install.txt | grep -w "Vmess None TLS" | cut -d: -f2|sed 's/ //g')"
 user=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 uuid=$(cat /proc/sys/kernel/random/uuid)
-masaaktif=15
-exp=`date -d "$masaaktif minutes" +"%Y-%m-%d %T"`
+masaaktif=1
+exp=`date -d "$masaaktif days" +"%Y-%m-%d %T"`
 harini=`date -d "0 days" +"%Y-%m-%d %T"`
 sed -i '/#vmess$/a\###vms '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
-exp=`date -d "$masaaktif minutes" +"%Y-%m-%d %T"`
+exp=`date -d "$masaaktif days" +"%Y-%m-%d %T"`
 sed -i '/#vmessgrpc$/a\###vms '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/grpcconfig.json
 asu=`cat<<EOF
@@ -504,7 +504,8 @@ echo -e "     ${BICyan}[${BIWhite}02${BICyan}] Delete Vmess Account     "
 echo -e "     ${BICyan}[${BIWhite}03${BICyan}] Renew Vmess Account     "
 echo -e "     ${BICyan}[${BIWhite}04${BICyan}] Cek User Vmess Login    "
 echo -e "     ${BICyan}[${BIWhite}05${BICyan}] Show Config Password Vmess Account     "
-echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Vmess Account (active 1 hours only)     "
+#echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Vmess Account (active 1 hours only)     "
+echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Vmess Account (active 1 days only)     "
 echo -e "     ${BICyan}[${BIWhite}07${BICyan}] Back to menu     "
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e "     ${BIYellow}Press x or [ Ctrl+C ] • To-${BIWhite}Exit${NC}"
