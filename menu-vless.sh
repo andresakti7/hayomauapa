@@ -352,8 +352,8 @@ tls="$(cat ~/log-install.txt | grep -w "Vless TLS" | cut -d: -f2|sed 's/ //g')"
 none="$(cat ~/log-install.txt | grep -w "Vless None TLS" | cut -d: -f2|sed 's/ //g')"
 user=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 uuid=$(cat /proc/sys/kernel/random/uuid)
-masaaktif=15
-exp=`date -d "$masaaktif minutes" +"%Y-%m-%d %T"`
+masaaktif=1
+exp=`date -d "$masaaktif days" +"%Y-%m-%d %T"`
 harini=`date -d "0 days" +"%Y-%m-%d %T"`
 sed -i '/#vless$/a\###vls '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
@@ -400,7 +400,8 @@ echo -e "     ${BICyan}[${BIWhite}02${BICyan}] Delete Vless Account     "
 echo -e "     ${BICyan}[${BIWhite}03${BICyan}] Renew Vless Account     "
 echo -e "     ${BICyan}[${BIWhite}04${BICyan}] Cek User Vless Login     "
 echo -e "     ${BICyan}[${BIWhite}05${BICyan}] Show Config Password Vless Account     "
-echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Vless Account (active 1 hours only)     "
+#echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Vless Account (active 1 hours only)     "
+echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Trial Vless Account (active 1 days only)     "
 echo -e "     ${BICyan}[${BIWhite}07${BICyan}] Back to menu     "
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e "     ${BIYellow}Press x or [ Ctrl+C ] • To-${BIWhite}Exit${NC}"
