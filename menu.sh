@@ -1396,49 +1396,48 @@ License_Key=$(cat /etc/${Auther}/license.key)
 export Nama_Issued_License=$( curl -s https://${Server_URL}/validated-registered-license-key.txt | grep -w $License_Key | cut -d ' ' -f 7-100 | tr -d '\r' | tr -d '\r\n')
 clear
 ##----- Auto Remove Vmess
-data=( `cat /etc/xray/config.json | grep '^###' | cut -d ' ' -f 2 | sort | uniq`);
+data=( `cat /etc/xray/config.json | grep '^###vms' | cut -d ' ' -f 2 | sort | uniq`);
 now=`date +"%Y-%m-%d %T"`
 for user in "${data[@]}"
 do
-exp=$(grep -w "^### $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
+exp=$(grep -w "^###vms $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
 exp2=$(( (d1 - d2) / 86400 ))
 if [[ "$exp2" -le "0" ]]; then
-sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
-sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
-sed -i "/^### $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
+sed -i "/^###vms $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^###vms $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
 rm -f /etc/xray/$user-tls.json /etc/xray/$user-none.json
 fi
 done
 
 #----- Auto Remove Vless
-data=( `cat /etc/xray/config.json | grep '^#&' | cut -d ' ' -f 2 | sort | uniq`);
-now=`date +"%Y-%m-%d"`
+data=( `cat /etc/xray/config.json | grep '^###vls' | cut -d ' ' -f 2 | sort | uniq`);
+now=`date +"%Y-%m-%d %T"`
 for user in "${data[@]}"
 do
-exp=$(grep -w "^#& $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+exp=$(grep -w "^###vls $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
 exp2=$(( (d1 - d2) / 86400 ))
 if [[ "$exp2" -le "0" ]]; then
-sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
-sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^###vls $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^###vls $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
 fi
 done
 
 #----- Auto Remove Trojan
-data=( `cat /etc/xray/config.json | grep '^#!' | cut -d ' ' -f 2 | sort | uniq`);
-now=`date +"%Y-%m-%d"`
+data=( `cat /etc/xray/config.json | grep '^###trs' | cut -d ' ' -f 2 | sort | uniq`);
+now=`date +"%Y-%m-%d %T"`
 for user in "${data[@]}"
 do
-exp=$(grep -w "^#! $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+exp=$(grep -w "^###trs $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
 exp2=$(( (d1 - d2) / 86400 ))
 if [[ "$exp2" -le "0" ]]; then
-sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
-sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^###trs $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^###trs $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
 fi
 done
 systemctl restart xray
