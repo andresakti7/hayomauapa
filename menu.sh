@@ -1356,12 +1356,16 @@ vmess1=$(grep -c -E "^###vmstrial " "/etc/xray/config.json")
 vmess2=$(expr "$vmess" + "$vmess1")
 # TOTAL ACC CREATE  VLESS WS
 vless=$(grep -c -E "^###vls " "/etc/xray/config.json")
+vless1=$(grep -c -E "^###vlstrial " "/etc/xray/config.json")
+vless2=$(expr "$vless" + "$vless1")
 # TOTAL ACC CREATE  VLESS TCP XTLS
 ssws=$(grep -c -E "^###ssws " "/etc/xray/config.json")
 # TOTAL ACC CREATE  TROJAN
 trtls=$(grep -c -E "^###trx " "/etc/xray/tcp.json")
 # TOTAL ACC CREATE  TROJAN WS TLS
 trws=$(grep -c -E "^###trs " "/etc/xray/config.json")
+trws1=$(grep -c -E "^###trstrial " "/etc/xray/config.json")
+trws2=$(expr "$trws" + "$trws1")
 # TOTAL ACC CREATE  SOCKWS
 shockws=$(grep -c -E "^###sckws " "/etc/xray/config.json")
 # TOTAL ACC CREATE OVPN SSH
@@ -1416,7 +1420,7 @@ echo -e "  \e[$yy Order ID             :$xz $Nama_Issued_License $xz"
 #echo -e "  \e[$yy Expired Status       :$wh $(cat /etc/${Auther}/license-remaining-active-days.db)$wh Days$wh" | lolcat
 echo -e "  \e[$yy Provided By          :$yl Script Credit by Andre Sakti $yl"
 echo -e "  \e[$yy Status Update        :$stl"
-echo -e "  $yy Expired Status       :$wh $(cat /etc/${Auther}/license-remaining-active-days.db)$wh Days$wh" | lolcat
+echo -e "  $yy Expired Status       :$wh $(cat /etc/${Auther}/license-remaining-active-days.db)$wh Days$wh" #| lolcat
 echo -e " \e[$line╒════════════════════════════════════════════════════════════╕\e[m"
 echo -e " \e[$yy     Traffic        Today       Yesterday      Month   $yy"
 echo -e "   \e[$text   Download${NC}     \e[${text}$today_tx $today_txv      $yesterday_tx $yesterday_txv     $month_tx $month_txv   \e[0m"
@@ -1426,7 +1430,7 @@ echo -e " \e[$line╘═══════════════════�
 #echo -e "                       \E[0;41;37m LIST ACCOUNTS \E[0m" 
 echo -e "                        $BOLD $UNDERLINE LIST ACCOUNTS " | lolcat
 echo -e " \e[$yy    SSH      Vmess     Vless    Trojan-Ws   SS-WS    SOCK-WS$yy "  
-echo -e " \e[$below     $total_ssh         $vmess2         $vless         $trws          $ssws         $shockws \e[0m "
+echo -e " \e[$below     $total_ssh         $vmess2         $vless2         $trws2          $ssws         $shockws \e[0m "
 echo -e " \e[$yy  Account   Account   Account    Account   Account   Account$yy "  
 echo -e " \e[$line╒════════════════════════════════════════════════════════════╕\e[m"
 #echo -e "  \e[   $yyExpired Status :$wh $(cat /etc/${Auther}/license-remaining-active-days.db)$wh Days$wh" | lolcat
