@@ -402,13 +402,13 @@ tls="$(cat ~/log-install.txt | grep -w "Vmess TLS" | cut -d: -f2|sed 's/ //g')"
 none="$(cat ~/log-install.txt | grep -w "Vmess None TLS" | cut -d: -f2|sed 's/ //g')"
 user=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 uuid=$(cat /proc/sys/kernel/random/uuid)
-masaaktif=15
+masaaktif=60
 exp=`date -d "$masaaktif minutes" +"%Y-%m-%d %T"`
 harini=`date -d "0 days" +"%Y-%m-%d %T"`
-sed -i '/#vmess$/a\###vms '"$user $exp $harini $uuid"'\
+sed -i '/#vmess$/a\###vmstrial '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 exp=`date -d "$masaaktif minutes" +"%Y-%m-%d %T"`
-sed -i '/#vmessgrpc$/a\###vms '"$user $exp $harini $uuid"'\
+sed -i '/#vmessgrpc$/a\###vmstrial '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/grpcconfig.json
 asu=`cat<<EOF
       {
