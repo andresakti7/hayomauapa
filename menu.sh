@@ -1089,7 +1089,7 @@ echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 xmenu
 }
-function limitspeed(){
+function xp(){
 ##----- Auto Remove Vmess
 data=( `cat /etc/xray/config.json | grep '^###vms' | cut -d ' ' -f 2 | sort | uniq`);
 now=`date +"%Y-%m-%d %T"`
