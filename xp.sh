@@ -117,6 +117,53 @@ else
     echo $sisa_hari > /etc/${Auther}/license-remaining-active-days.db
 fi
 ##----- Auto Remove Vmess
+data=( `cat /etc/xray/config.json | grep '^###' | cut -d ' ' -f 2 | sort | uniq`);
+now=`date +"%Y-%m-%d"`
+for user in "${data[@]}"
+do
+exp=$(grep -w "^### $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+d1=$(date -d "$exp" +%s)
+d2=$(date -d "$now" +%s)
+exp2=$(( (d1 - d2) / 86400 ))
+if [[ "$exp2" -le "0" ]]; then
+sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
+rm -f /etc/xray/$user-tls.json /etc/xray/$user-none.json
+fi
+done
+
+#----- Auto Remove Vless
+data=( `cat /etc/xray/config.json | grep '^#&' | cut -d ' ' -f 2 | sort | uniq`);
+now=`date +"%Y-%m-%d"`
+for user in "${data[@]}"
+do
+exp=$(grep -w "^#& $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+d1=$(date -d "$exp" +%s)
+d2=$(date -d "$now" +%s)
+exp2=$(( (d1 - d2) / 86400 ))
+if [[ "$exp2" -le "0" ]]; then
+sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
+fi
+done
+
+#----- Auto Remove Trojan
+data=( `cat /etc/xray/config.json | grep '^#!' | cut -d ' ' -f 2 | sort | uniq`);
+now=`date +"%Y-%m-%d"`
+for user in "${data[@]}"
+do
+exp=$(grep -w "^#! $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
+d1=$(date -d "$exp" +%s)
+d2=$(date -d "$now" +%s)
+exp2=$(( (d1 - d2) / 86400 ))
+if [[ "$exp2" -le "0" ]]; then
+sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
+sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
+fi
+done
+
+#Test
+##----- Auto Remove Vmess
 data=( `cat /etc/xray/config.json | grep '^###vms' | cut -d ' ' -f 2 | sort | uniq`);
 now=`date +"%Y-%m-%d %T"`
 for user in "${data[@]}"
@@ -171,8 +218,8 @@ do
 exp=$(grep -w "^###vmstrial $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
-exp2=$(( (d1 - d2) / 1 ))
-if [[ "$exp2" = "0" ]]; then
+exp2=$(( (d1 - d2) / 1800 ))
+if [[ "$exp2" -le "0" ]]; then
 sed -i "/^###vmstrial $user $exp/,/^},{/d" /etc/xray/config.json
 sed -i "/^###vmstrial $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
 rm -f /etc/xray/$user-tls.json /etc/xray/$user-none.json
@@ -181,13 +228,13 @@ done
 
 #----- Auto Remove Vless
 data=( `cat /etc/xray/config.json | grep '^###vlstrial' | cut -d ' ' -f 2 | sort | uniq`);
-now=`date +"%Y-%m-%d"`
+now=`date +"%Y-%m-%d %T"`
 for user in "${data[@]}"
 do
 exp=$(grep -w "^###vlstrial $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
-exp2=$(( (d1 - d2) / 1 ))
+exp2=$(( (d1 - d2) / 1800 ))
 if [[ "$exp2" -le "0" ]]; then
 sed -i "/^###vlstrial $user $exp/,/^},{/d" /etc/xray/config.json
 sed -i "/^###vlstrial $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
@@ -199,10 +246,10 @@ data=( `cat /etc/xray/config.json | grep '^###trstrial' | cut -d ' ' -f 2 | sort
 now=`date +"%Y-%m-%d %T"`
 for user in "${data[@]}"
 do
-exp=$(grep -E "^###trstrial $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
+exp=$(grep -w "^###trstrial $user" "/etc/xray/config.json" | cut -d ' ' -f 3-4 | sort | uniq)
 d1=$(date -d "$exp" +%s)
 d2=$(date -d "$now" +%s)
-exp2=$(( (d1 - d2) / 1 ))
+exp2=$(( (d1 - d2) / 1800 ))
 if [[ "$exp2" -le "0" ]]; then
 sed -i "/^###trstrial $user $exp/,/^},{/d" /etc/xray/config.json
 sed -i "/^###trstrial $user $exp/,/^},{/d" /etc/xray/grpcconfig.json
